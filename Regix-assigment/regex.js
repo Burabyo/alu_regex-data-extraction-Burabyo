@@ -19,3 +19,6 @@ For inquiries, call (123) 456-7890 or 123-456-7890.
 Use your credit card 1234-5678-9012-3456 or 1234 5678 9012 3456 for payment.
 `;
 
+// Extract data
+const results = extractData(testText);
+
