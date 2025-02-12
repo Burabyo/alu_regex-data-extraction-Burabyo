@@ -22,3 +22,11 @@ Use your credit card 1234-5678-9012-3456 or 1234 5678 9012 3456 for payment.
 // Extract data
 const results = extractData(testText);
 
+// Display extracted data
+for (let category in results) {
+  console.log(`${category.charAt(0).toUpperCase() + category.slice(1)}:`);
+  results[category].forEach(match => console.log(`  - ${match}`));
+}
+
+
+
