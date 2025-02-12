@@ -1,0 +1,1 @@
+This regex is made to extract emails, URLs, phone numbers, and credit card numbers from text using JavaScript RegEx. Modify testText for custom input. Outputs extracted data. This is to be able to  aggregate data from all over the web and display relevant information based on the user's request.
