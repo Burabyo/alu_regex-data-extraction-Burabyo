@@ -1,9 +1,9 @@
 /**
- * Extracting various data patterns from text using regular expressions
+ * DataExtractor class for extracting various data patterns from text using regular expressions
  */
 class DataExtractor {
   /**
-   * Initializing the DataExtractor
+   * Initialize the DataExtractor with text to process
    * @param {string} sampleText - The text to extract data from
    */
   constructor(sampleText) {
@@ -20,7 +20,7 @@ class DataExtractor {
   }
 
   /**
-   * Extracting URLs from the text
+   * Extract URLs from the text
    * @returns {string[]} Array of found URLs
    */
   extractUrls() {
@@ -29,7 +29,7 @@ class DataExtractor {
   }
 
   /**
-   * Extracting phone numbers from the text
+   * Extract phone numbers from the text
    * @returns {string[]} Array of found phone numbers
    */
   extractPhoneNumbers() {
@@ -84,5 +84,3 @@ class DataExtractor {
 }
 
 module.exports = DataExtractor;
-
-
