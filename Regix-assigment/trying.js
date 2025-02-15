@@ -1,86 +1,56 @@
-/**
- * DataExtractor class for extracting various data patterns from text using regular expressions
- */
-class DataExtractor {
-  /**
-   * Initialize the DataExtractor with text to process
-   * @param {string} sampleText - The text to extract data from
-   */
-  constructor(sampleText) {
-      this.sampleText = sampleText;
-  }
+const DataExtractor = require('./data-extractor');
 
-  /**
-   * Extract email addresses from the text
-   * @returns {string[]} Array of found email addresses
-   */
-  extractEmails() {
-      const pattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/g;
-      return this.sampleText.match(pattern) || [];
-  }
+// Sample text with various patterns to test
+const testString = `
+Welcome to our online store! Shop now at https://mystore.com/shop
+Contact our support team at support@mystore.com or customercare@shop.co.uk
+Need help? Call us at (555) 123-4567 or 888.777.6666
 
-  /**
-   * Extract URLs from the text
-   * @returns {string[]} Array of found URLs
-   */
-  extractUrls() {
-      const pattern = /https?:\/\/(?:[-\w.]|(?:%[\da-fA-F]{2}))+[^\s,)"]*/g;
-      return this.sampleText.match(pattern) || [];
-  }
+Product Details:
+<div class="product">
+    <h1>Latest Gadget</h1>
+    <img src="gadget.jpg" alt="Cool Gadget">
+</div>
 
-  /**
-   * Extract phone numbers from the text
-   * @returns {string[]} Array of found phone numbers
-   */
-  extractPhoneNumbers() {
-      const pattern = /(?:\+\d{1,2}\s?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/g;
-      return this.sampleText.match(pattern) || [];
-  }
+Price: $299.99
+Special Deal: $1,499.99
+Premium Version: $2,999.00
 
-  /**
-   * Extract credit card numbers from the text
-   * @returns {string[]} Array of found credit card numbers
-   */
-  extractCreditCards() {
-      const pattern = /\b(?:\d{4}[-\s]?){3}\d{4}\b/g;
-      return this.sampleText.match(pattern) || [];
-  }
+Store Hours: 9:30 AM to 18:30 (24-hour format)
+Night Support: 8:45 PM to 23:45
 
-  /**
-   * Extract time formats from the text
-   * @returns {string[]} Array of found time formats
-   */
-  extractTime() {
-      const pattern = /(?:(?:0?[1-9]|1[0-2]):[0-5]\d\s?(?:AM|PM)|(?:2[0-3]|[01]?\d):[0-5]\d)/g;
-      return this.sampleText.match(pattern) || [];
-  }
+Follow us on social:
+#TechDeals #LatestGadgets #ShopNow
 
-  /**
-   * Extract HTML tags from the text
-   * @returns {string[]} Array of found HTML tags
-   */
-  extractHtmlTags() {
-      const pattern = /<[^>]+>/g;
-      return this.sampleText.match(pattern) || [];
-  }
+Payment accepted:
+Credit Card: 4111-1111-1111-1111
+Alternative Card: 5555 6666 7777 8888
 
-  /**
-   * Extract hashtags from the text
-   * @returns {string[]} Array of found hashtags
-   */
-  extractHashtags() {
-      const pattern = /#[a-zA-Z0-9_]+\b/g;
-      return this.sampleText.match(pattern) || [];
-  }
+Visit our other sites:
+https://blog.mystore.com/news
+http://support.mystore.net/help
 
-  /**
-   * Extract currency amounts from the text
-   * @returns {string[]} Array of found currency amounts
-   */
-  extractCurrency() {
-      const pattern = /\$\d{1,3}(?:,\d{3})*(?:\.\d{2})?/g;
-      return this.sampleText.match(pattern) || [];
-  }
-}
+Emergency Contact: 123-456-7890
+International: +1-777-888-9999
+`;
 
-module.exports = DataExtractor;
+// Create an instance of DataExtractor
+const extractor = new DataExtractor(testString);
+
+// Test each extraction method
+const testExtraction = (methodName, title) => {
+    const results = extractor[methodName]();
+    console.log(`\n${title}:`);
+    console.log('-'.repeat(title.length));
+    results.forEach(item => console.log(item));
+};
+
+// Run tests
+testExtraction('extractEmails', 'Extracted Emails');
+testExtraction('extractUrls', 'Extracted URLs');
+testExtraction('extractPhoneNumbers', 'Extracted Phone Numbers');
+testExtraction('extractCreditCards', 'Extracted Credit Card Numbers');
+testExtraction('extractTime', 'Extracted Time Formats');
+testExtraction('extractHtmlTags', 'Extracted HTML Tags');
+testExtraction('extractHashtags', 'Extracted Hashtags');
+testExtraction('extractCurrency', 'Extracted Currency Amounts');
